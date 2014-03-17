@@ -17,4 +17,6 @@ while currentCount <= target:
         largest = currentPrime
         currentCount += 1
     currentPrime += 2
-print(largest)
+print('Answer: ' + str(largest))
+
+# Answer: 104743
