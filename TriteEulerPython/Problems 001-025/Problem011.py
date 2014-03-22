@@ -32,6 +32,8 @@ What is the greatest product of four adjacent numbers in the same direction
 
 gridArray, lineNum, largest = [None] * 20, 0, 0
 
+locDetails = [[0, 0, 0]] * 4
+
 for line in grid.splitlines():
     itemNum = 0
     gridArray[lineNum] = [None] * 20
@@ -40,27 +42,37 @@ for line in grid.splitlines():
         itemNum += 1
     lineNum += 1
 
+def CheckArray(arr, xyvals, largest, locDetails):
+    product = 1
+    details = [None] * 4
+    count = 0
+    for xy in xyvals:
+        x, y = xy
+        details[count] = [None] * 3
+        val = arr[x][y]
+        details[count][0] = x
+        details[count][1] = y
+        details[count][2] = val
+        count += 1
+        product *= val
+    if product > largest:
+        return (product, details)
+    else:
+        return (largest, locDetails)
 
 for x in range(0, 20):
     for y in range(0, 20):
-        if (x <= 16):
-            # Down stuff
-            #product = []
-            product = gridArray[x][y] * gridArray[x+1][y] * gridArray[x+2][y] * gridArray[x+3][y]
-            largest = product if product > largest else largest
-        if (y <= 16):
-            # Right stuff
-            product = gridArray[x][y] * gridArray[x][y+1] * gridArray[x][y+2] * gridArray[x][y+3]
-            largest = product if product > largest else largest
-        if (x <= 16) and (y <= 16):
-            # Down-Right stuff
-            product = gridArray[x][y] * gridArray[x+1][y+1] * gridArray[x+2][y+2] * gridArray[x+3][y+3]
-            largest = product if product > largest else largest
-        if (x <= 16) and (y <= 3):
-            # Down-Left stuff
-            product = gridArray[x][y] * gridArray[x+1][y-1] * gridArray[x+2][y-2] * gridArray[x+3][y-3]
-            largest = product if product > largest else largest
+        if (x <= 16): #down
+            largest, locDetails = CheckArray(gridArray, ((x, y), (x+1, y), (x+2, y), (x+3, y)), largest, locDetails)
+        if (y <= 16): #right
+            largest, locDetails = CheckArray(gridArray, ((x, y), (x, y+1), (x, y+2), (x, y+3)), largest, locDetails)
+        if (x <= 16) and (y <= 16): #down-right
+            largest, locDetails = CheckArray(gridArray, ((x, y), (x+1, y+1), (x+2, y+2), (x+3, y+3)), largest, locDetails)
+        if (x <= 16) and (y >= 3): #down-left
+            largest, locDetails = CheckArray(gridArray, ((x, y), (x+1, y-1), (x+2, y-2), (x+3, y-3)), largest, locDetails)
         
 print('Answer: ' + str(largest))
+print('Details: ' + str(locDetails))
 
-# Answer: 51267216
+# Answer: 70600674
+# Details: [[12, 6, 89], [13, 5, 94], [14, 4, 97], [15, 3, 87]]
