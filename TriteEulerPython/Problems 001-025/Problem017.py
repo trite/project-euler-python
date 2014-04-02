@@ -41,12 +41,10 @@ def numStr(input):
     return result
 
 result = 0
-for x in range(1, 1005):
+for x in range(1, 1001):
     result += len(numStr(x))
 
 print('Answer: ' + str(result))
-
-print(numStr(1000))
 
 
 

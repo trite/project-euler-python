@@ -10,3 +10,6 @@ How many such routes are there through a 20x20 grid?
 
 
 ''')
+
+wh = 2
+
