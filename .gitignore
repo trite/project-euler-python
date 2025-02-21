@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+# *.env
+*.venv
+env/
+venv/
+ENV/
+VENV/
+*.egg-info/
+dist/
+build/
+
+# TypeScript
+node_modules/
+dist/
+*.tsbuildinfo
+
+# General
+.DS_Store
+*.log
+.idea/
+.vscode/
+*.swp
