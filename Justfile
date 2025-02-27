@@ -1,4 +1,9 @@
-# Only needed once per project, but including here for reference/templating
+# Workflow on a new machine:
+# 1. Initialize the virtual environment (just init-venv)
+# 2. Activate the virtual environment (just activate-venv)
+# 3. Install the requirements (just install)
+
+# Initialize virtual env (once per machine)
 init-venv:
   python3 -m venv .venv
 
