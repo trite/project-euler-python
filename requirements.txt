@@ -1,2 +1,4 @@
 numpy==2.2.3
 pandas==2.2.3
+beautifulsoup4==4.13.3
+html2text==2024.2.26
